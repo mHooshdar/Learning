@@ -13,4 +13,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   // entities: [__dirname + '/../**/*.entity.{js,ts}'],
   // synchronize: process.env.DB_SYNCHRONIZE || dbConfig.synchronize,
   url: process.env.DATABASE_URL,
+  synchronize: true
 };
