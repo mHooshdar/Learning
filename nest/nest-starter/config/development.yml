@@ -3,6 +3,3 @@ db:
   username: 'test' # DB_USER
   password: 'test' # DB_PASSWORD
   synchronize: true
-
-jwt:
-  secret: 'topSecret51'
