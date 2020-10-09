@@ -8,4 +8,3 @@ db:
 
 jwt:
   expiresIn: 3600
-  secret: 'topSecret51'
