@@ -10,8 +10,8 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   // username: process.env.DB_USER || dbConfig.username,
   // password: process.env.DB_PASSWORD || dbConfig.password,
   // database: process.env.DB_NAME || dbConfig.database,
-  // entities: [__dirname + '/../**/*.entity.{js,ts}'],
   // synchronize: process.env.DB_SYNCHRONIZE || dbConfig.synchronize,
+  entities: [__dirname + '/../**/*.entity.{js,ts}'],
   url: process.env.DATABASE_URL,
   synchronize: true
 };
