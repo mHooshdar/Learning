@@ -61,18 +61,8 @@ export class TaskRepository extends Repository<Task> {
       );
       throw new InternalServerErrorException();
     }
+
     delete task.user;
-
-    return task;
-  }
-
-  async updateTaskStatus(
-    id: number,
-    status: TaskStatus,
-    task: Task,
-  ): Promise<Task> {
-    task.status = status;
-    task.save();
     return task;
   }
 }
