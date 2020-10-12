@@ -24,6 +24,11 @@ import { AuthModule } from './auth/auth.module';
 export class AppModule {}
 // export class AppModule implements NestModule {
 // configure(consumer: MiddlewareConsumer) {
-//   consumer.apply(loggerMiddleware).forRoutes(TasksController);
+//   consumer.apply(loggerMiddleware)..exclude(
+//     { path: 'cats', method: RequestMethod.GET },
+//     { path: 'cats', method: RequestMethod.POST },
+//     'cats/(.*)',
+//   )
+// .forRoutes(TasksController);
 // }
 // }
