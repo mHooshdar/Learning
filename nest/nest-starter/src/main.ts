@@ -18,7 +18,7 @@ async function bootstrap() {
   const port = process.env.PORT || serverConfig.port;
   app.use(loggerMiddleWare);
   // set global exception filter
-  // app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(new HttpExceptionFilter());
   await app.listen(port);
   logger.log(`Aplication listening on port ${port}`);
 }

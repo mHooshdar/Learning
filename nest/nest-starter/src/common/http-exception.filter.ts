@@ -2,10 +2,12 @@ import {
   ArgumentsHost,
   Catch,
   ExceptionFilter,
+  ForbiddenException,
   HttpException,
 } from '@nestjs/common';
 import { Response, Request } from 'express';
 
+// @Catch(ForbiddenException)
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
@@ -14,15 +16,24 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
 
+    const exceptionResponse: any = exception.getResponse();
+
+    console.log(exception);
+
+    const errorObject = {
+      message: exceptionResponse.message || exceptionResponse,
+      error: exception.message,
+    };
+
     response.status(status).json({
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
       error:
         process.env.NODE_ENG === 'production'
-          ? { message: exception.message }
+          ? errorObject
           : {
-              message: exception.message,
+              ...errorObject,
               stack: exception.stack,
             },
     });
