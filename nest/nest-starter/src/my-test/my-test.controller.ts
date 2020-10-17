@@ -53,6 +53,7 @@ export class MyTestController {
   async t6() {
     // sleep function
     await new Promise(resolve => setTimeout(resolve, 7000));
+
     return {
       a: null,
       b: 'hello'
