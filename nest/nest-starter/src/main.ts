@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as config from 'config';
 import { logger as loggerMiddleWare } from './common/middleware/logger.middleware';
-import { HttpExceptionFilter } from './common/http-exception.filter';
+import { HttpExceptionFilter } from './common/filter/errors.filter';
 
 async function bootstrap() {
   const serverConfig = config.get('server');

@@ -12,6 +12,7 @@ import { TasksModule } from './tasks/tasks.module';
 import { AuthModule } from './auth/auth.module';
 // import { logger as loggerMiddleware } from './common/middleware/logger.middleware';
 // import { TasksController } from './tasks/tasks.controller';
+import { MyTestModule } from './my-test/my-test.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     TasksModule,
     AuthModule,
+    MyTestModule,
   ],
 })
 export class AppModule {}
