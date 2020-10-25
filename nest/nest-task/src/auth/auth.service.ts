@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
-import { UserRepository } from './user.repository';
+import { UserRepository } from 'src/users/user.repository';
 
 @Injectable()
 export class AuthService {

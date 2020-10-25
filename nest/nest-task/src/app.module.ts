@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import config = require('config');
 import { AuthModule } from './auth/auth.module';
 import { DevModule } from './dev/dev.module';
+import { UsersModule } from './users/users.module';
 
 const dbConfig = config.get('db');
 
@@ -28,6 +29,7 @@ const dbConfig = config.get('db');
     }),
     AuthModule,
     DevModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
