@@ -1,8 +1,10 @@
+
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import config = require('config');
 import { AuthModule } from './auth/auth.module';
+import { DevModule } from './dev/dev.module';
 
 const dbConfig = config.get('db');
 
@@ -25,6 +27,7 @@ const dbConfig = config.get('db');
       entities: [__dirname + '/**/*.entity.{js,ts}'], // TYPEORM_ENTITIES
     }),
     AuthModule,
+    DevModule,
   ],
 })
 export class AppModule {}

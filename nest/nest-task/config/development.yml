@@ -4,5 +4,8 @@ db:
   password: 'test' # TYPEORM_PASSWORD
   synchronize: true
 
+redis:
+  host: 'localhost'
+
 jwt:
   secret: 'topSecret51'
