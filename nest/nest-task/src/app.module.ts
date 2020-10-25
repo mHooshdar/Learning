@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import config = require('config');
 import { AuthModule } from './auth/auth.module';
 import { DevModule } from './dev/dev.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 const dbConfig = config.get('db');
 
@@ -26,6 +27,7 @@ const dbConfig = config.get('db');
         process.env.NODE_ENV !== 'production', // TYPEORM_SYNCHRONIZE
       entities: [__dirname + '/**/*.entity.{js,ts}'], // TYPEORM_ENTITIES
     }),
+    ScheduleModule.forRoot(),
     AuthModule,
     DevModule,
   ],
