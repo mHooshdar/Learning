@@ -2,9 +2,9 @@ server:
   port: 3000 # PORT
 
 db:
-  type: 'postgres' # DB_TYPE
-  port: 5432 # DB_PORT
-  database: 'nest-task' # DB_NAME
+  type: 'postgres' # TYPEORM_CONNECTION
+  port: 5432 # TYPEORM_PORT
+  database: 'nest-task' # TYPEORM_DATABASE
 
 jwt:
   expiresIn: 3600

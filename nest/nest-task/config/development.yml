@@ -1,7 +1,7 @@
 db:
-  host: 'localhost' # DB_HOST
-  username: 'test' # DB_USER
-  password: 'test' # DB_PASSWORD
+  host: 'localhost' # TYPEORM_HOST
+  username: 'test' # TYPEORM_USERNAME
+  password: 'test' # TYPEORM_PASSWORD
   synchronize: true
 
 jwt:
