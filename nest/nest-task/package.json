@@ -30,6 +30,7 @@
     "@nestjs/schedule": "^0.4.1",
     "@nestjs/typeorm": "^7.1.4",
     "@types/passport": "^1.0.4",
+    "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "cache-manager": "^3.4.0",
     "cache-manager-redis-store": "^2.0.0",
