@@ -3,7 +3,6 @@ import { NestFactory } from '@nestjs/core';
 import * as config from 'config';
 import * as compression from 'compression';
 import * as helmet from 'helmet';
-import * as csurf from 'csurf';
 import * as rateLimit from 'express-rate-limit';
 
 import { AppModule } from './app.module';
@@ -19,7 +18,6 @@ async function bootstrap() {
   app.set('trust proxy', 1);
   app.use(helmet());
   app.use(compression());
-  app.use(csurf());
   app.use(
     rateLimit({
       windowMs: 15 * 60 * 1000, // 15 minutes

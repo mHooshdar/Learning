@@ -6,6 +6,7 @@ import config = require('config');
 import { AuthModule } from './auth/auth.module';
 import { DevModule } from './dev/dev.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { FilesModule } from './files/files.module';
 
 const dbConfig = config.get('db');
 
@@ -30,6 +31,7 @@ const dbConfig = config.get('db');
     ScheduleModule.forRoot(),
     AuthModule,
     DevModule,
+    FilesModule,
   ],
 })
 export class AppModule {}
