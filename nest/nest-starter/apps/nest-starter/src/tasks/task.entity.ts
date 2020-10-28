@@ -1,4 +1,3 @@
-import { User } from 'src/auth/user.entity';
 import {
   BaseEntity,
   Column,
@@ -6,6 +5,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { User } from '../auth/user.entity';
 import { TaskStatus } from './task-status.enum';
 
 @Entity()
@@ -19,7 +19,11 @@ export class Task extends BaseEntity {
   @Column()
   description: string;
 
-  @Column()
+  @Column({
+    type: "enum",
+    enum: TaskStatus,
+    default: TaskStatus.OPEN
+  })
   status: TaskStatus;
 
   @ManyToOne(

@@ -9,12 +9,12 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { Roles } from 'src/common/decorator/roles.decorator';
-import { HttpExceptionFilter } from 'src/common/filter/errors.filter';
-import { RolesGuard } from 'src/common/guard/roles.guard';
-import { CustomAuthGuard } from 'src/common/guard/auth.guard';
-import { LoggingInterceptor } from 'src/common/interceptor/logging.interceptor';
-import { TimeoutInterceptor } from 'src/common/interceptor/timeout.interceptor';
+import { Roles } from '../common/decorator/roles.decorator';
+import { HttpExceptionFilter } from '../common/filter/errors.filter';
+import { CustomAuthGuard } from '../common/guard/auth.guard';
+import { RolesGuard } from '../common/guard/roles.guard';
+import { LoggingInterceptor } from '../common/interceptor/logging.interceptor';
+import { TimeoutInterceptor } from '../common/interceptor/timeout.interceptor';
 
 @Controller('my-test')
 
