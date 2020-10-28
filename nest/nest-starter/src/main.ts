@@ -1,5 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
 import { AppModule } from './app.module';
 import * as config from 'config';
 import { logger as loggerMiddleWare } from './common/middleware/logger.middleware';
@@ -10,7 +12,7 @@ async function bootstrap() {
   const serverConfig = config.get('server');
 
   const logger = new Logger('bootstrap');
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   if (process.env.NODE_ENV === 'development') {
     app.enableCors();
@@ -21,6 +23,11 @@ async function bootstrap() {
   // set global exception filter
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new TransformInterceptor());
+
+  app.useStaticAssets(join(__dirname, '..', 'public'));
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setViewEngine('hbs');
+
   await app.listen(port);
   logger.log(`Aplication listening on port ${port}`);
 }

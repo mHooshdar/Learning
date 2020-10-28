@@ -4,6 +4,7 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  Render,
   UseFilters,
   UseGuards,
   UseInterceptors,
@@ -58,5 +59,11 @@ export class MyTestController {
       a: null,
       b: 'hello'
     };
+  }
+
+  @Get('t7')
+  @Render('index')
+  t7 () {
+    return { message: 'Hello world!' };
   }
 }
