@@ -8,14 +8,17 @@ import {
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Task } from '../tasks/task.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 @Unique(['username'])
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
+  @ApiProperty()
   id: number;
 
   @Column()
+  @ApiProperty()
   username: string;
 
   @Column()
@@ -29,6 +32,7 @@ export class User extends BaseEntity {
     task => task.user,
     { eager: true },
   )
+  @ApiProperty({ type: () => [Task] })
   tasks: Task[];
 
   async validatePassword(password: string): Promise<boolean> {

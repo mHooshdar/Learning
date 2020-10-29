@@ -7,6 +7,7 @@ import * as config from 'config';
 import { logger as loggerMiddleWare } from './common/middleware/logger.middleware';
 import { HttpExceptionFilter } from './common/filter/errors.filter';
 import { TransformInterceptor } from './common/interceptor/transform.interceptor';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const serverConfig = config.get('server');
@@ -27,6 +28,15 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '../../..', 'public'));
   app.setBaseViewsDir(join(__dirname, '../../..', 'views'));
   app.setViewEngine('hbs');
+
+  const options = new DocumentBuilder()
+    .setTitle('Nest Starter')
+    .setDescription('The nest starter API description')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api', app, document);
 
   await app.listen(port);
   logger.log(`Aplication listening on port ${port}`);

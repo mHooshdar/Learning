@@ -9,7 +9,9 @@ import {
   Patch,
   Post,
   Query,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -22,8 +24,20 @@ import { TaskStatus } from './task-status.enum';
 import { TasksService } from './tasks.service';
 import { GetUser } from '../common/decorator/get-user.decorator';
 import { User } from '../auth/user.entity';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConsumes,
+  ApiCreatedResponse,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { FileUploadDto } from './dto/file-upload.dto';
 
+@ApiTags('tasks')
 @Controller('tasks')
+@ApiBearerAuth()
 @UseGuards(AuthGuard())
 export class TasksController {
   private logger = new Logger('TasksController');
@@ -58,6 +72,10 @@ export class TasksController {
   // ): Task {1
   @Post()
   @UsePipes(ValidationPipe)
+  @ApiCreatedResponse({
+    description: 'The record has been successfully created.',
+    type: Task,
+  })
   createTask(
     @Body() createTaskDto: CreateTaskDto,
     @GetUser() user: User,
@@ -69,6 +87,34 @@ export class TasksController {
     );
     return this.taskService.createTask(createTaskDto, user);
   }
+
+  @Post('/array')
+  @UsePipes(ValidationPipe)
+  @ApiBody({ type: [CreateTaskDto] })
+  @ApiResponse({
+    status: 201,
+    description: 'The record has been successfully created.',
+  })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  createTaskArray(
+    @Body() createTaskDto: CreateTaskDto[],
+    @GetUser() user: User,
+  ) {
+    this.logger.verbose(
+      `User "${user.username}" creating a new task. Data: "${JSON.stringify(
+        createTaskDto,
+      )}"`,
+    );
+  }
+
+  @Post('/file')
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    description: 'file',
+    type: FileUploadDto,
+  })
+  uploadFile(@UploadedFile() file) {}
 
   @Delete('/:id')
   deleteTask(
