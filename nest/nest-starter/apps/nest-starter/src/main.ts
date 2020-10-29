@@ -9,6 +9,8 @@ import { HttpExceptionFilter } from './common/filter/errors.filter';
 import { TransformInterceptor } from './common/interceptor/transform.interceptor';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+declare const module: any;
+
 async function bootstrap() {
   const serverConfig = config.get('server');
 
@@ -41,6 +43,12 @@ async function bootstrap() {
   app.enableShutdownHooks();
 
   await app.listen(port);
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
+
   logger.log(`Aplication listening on port ${port}`);
 }
 bootstrap();
