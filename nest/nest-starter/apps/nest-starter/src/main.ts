@@ -38,6 +38,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
 
+  app.enableShutdownHooks();
+
   await app.listen(port);
   logger.log(`Aplication listening on port ${port}`);
 }

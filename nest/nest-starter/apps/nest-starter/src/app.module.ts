@@ -13,6 +13,8 @@ import { AuthModule } from './auth/auth.module';
 // import { logger as loggerMiddleware } from './common/middleware/logger.middleware';
 // import { TasksController } from './tasks/tasks.controller';
 import { MyTestModule } from './my-test/my-test.module';
+import { TerminusModule } from '@nestjs/terminus';
+import { HealthController } from './health/health.controller';
 
 @Module({
   imports: [
@@ -21,7 +23,9 @@ import { MyTestModule } from './my-test/my-test.module';
     TasksModule,
     AuthModule,
     MyTestModule,
+    TerminusModule,
   ],
+  controllers: [HealthController],
 })
 export class AppModule {}
 // export class AppModule implements NestModule {
