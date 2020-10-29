@@ -15,11 +15,17 @@ import { AuthModule } from './auth/auth.module';
 import { MyTestModule } from './my-test/my-test.module';
 import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from './health/health.controller';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
     envConfig,
     TypeOrmModule.forRoot(typeOrmConfig),
+    // with this line we can serve the spa project in the localhost:3000 url.
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
+    }),
     TasksModule,
     AuthModule,
     MyTestModule,
