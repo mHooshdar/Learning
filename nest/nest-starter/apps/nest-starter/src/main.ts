@@ -49,6 +49,8 @@ async function bootstrap() {
     module.hot.dispose(() => app.close());
   }
 
+  app.setGlobalPrefix('v1');
+
   logger.log(`Aplication listening on port ${port}`);
 }
 bootstrap();
