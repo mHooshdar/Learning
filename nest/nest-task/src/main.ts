@@ -30,8 +30,8 @@ async function bootstrap() {
       transform: true,
     }),
   );
-
   app.enableShutdownHooks();
+  
   await app.listen(port);
 
   logger.log(`Aplication listening on port ${port}`);
