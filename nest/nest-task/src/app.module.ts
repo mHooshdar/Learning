@@ -1,4 +1,3 @@
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
@@ -7,6 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { DevModule } from './dev/dev.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { FilesModule } from './files/files.module';
+import { BoardsModule } from './boards/boards.module';
+import { TeamsModule } from './teams/teams.module';
 
 const dbConfig = config.get('db');
 
@@ -32,6 +33,8 @@ const dbConfig = config.get('db');
     AuthModule,
     DevModule,
     FilesModule,
+    BoardsModule,
+    TeamsModule,
   ],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Body, ClassSerializerInterceptor, Controller, Get, Post, UseInterceptors } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Get, Post, UseInterceptors, ValidationPipe } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { User } from './user.entity';
@@ -12,9 +12,16 @@ export class AuthController {
     return this.authService.signUp(authCredentialsDto)
   }
 
+  @Post('/signin')
+  signIn(
+    @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto,
+  ): Promise<{ accessToken: string }> {
+    return this.authService.signIn(authCredentialsDto);
+  }
+
   @Get('/users')
   @UseInterceptors(ClassSerializerInterceptor)
   getUsers(): Promise<User[]> {
-    return this.authService.getUser();
+    return this.authService.getUsers();
   }
 }
