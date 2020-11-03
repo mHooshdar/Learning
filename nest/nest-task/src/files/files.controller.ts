@@ -4,10 +4,12 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from  'path';
 
+@ApiTags('files')
 @Controller('files')
 export class FilesController {
   @Post()

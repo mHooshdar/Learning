@@ -1,7 +1,9 @@
+import { User } from 'src/auth/user.entity';
 import {
   BaseEntity,
   Column,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
@@ -17,4 +19,11 @@ export class Board extends BaseEntity {
 
   @Column()
   color: string;
+
+  @ManyToOne(
+    type => User,
+    user => user.boards,
+    { eager: false }
+  )
+  creator: User;
 }
