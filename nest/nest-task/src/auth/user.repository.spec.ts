@@ -5,7 +5,7 @@ import {
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { User } from './user.entity';
+import { UserEntity } from './user.entity';
 
 const mockCredentialsDto = {
   username: 'TestUsername',
@@ -56,7 +56,7 @@ describe('UserRepository', () => {
 
     beforeEach(() => {
       userRepository.findOne = jest.fn();
-      user = new User();
+      user = new UserEntity();
       user.username = 'testUserName';
       user.validatePassword = jest.fn();
     });

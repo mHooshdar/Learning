@@ -1,15 +1,16 @@
 import * as bcrypt from 'bcrypt';
-import { User } from './user.entity';
+import { UserEntity } from './user.entity';
 
 describe('User Entity', () => {
-  let user: User;
+  let user: UserEntity;
 
   beforeEach(() => {
-    user = new User();
+    user = new UserEntity();
     user.salt = 'testSalt';
     user.password = 'testPassword';
     bcrypt.hash = jest.fn();
   });
+  
   describe('validatePassword', () => {
     it('returns true as password is valid', async () => {
       bcrypt.hash.mockReturnValue('testPassword');

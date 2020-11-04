@@ -2,7 +2,7 @@ import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { Cron, SchedulerRegistry } from '@nestjs/schedule';
 import {AxiosResponse} from 'axios';
 import { Observable } from 'rxjs';
-import { User } from 'src/auth/user.entity';
+import { UserEntity } from 'src/auth/user.entity';
 
 @Injectable()
 export class DevService {
@@ -23,7 +23,7 @@ export class DevService {
     // job.stop();
   }
 
-  findAll(): Observable<AxiosResponse<User[]>> {
+  findAll(): Observable<AxiosResponse<UserEntity[]>> {
     return this.httpService.get('http://localhost:3000/cats');
   }
 }

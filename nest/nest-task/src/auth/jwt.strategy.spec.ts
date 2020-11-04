@@ -23,6 +23,7 @@ describe('JwtStrategy', () => {
     jwtStrategy = await module.get<JwtStrategy>(JwtStrategy);
     userRepository = await module.get<UserRepository>(UserRepository);
   });
+
   describe('validate', () => {
     it('validates and retunrs the user based on JWT payload', async () => {
       const user = new User();
@@ -34,6 +35,7 @@ describe('JwtStrategy', () => {
       });
       expect(result).toEqual(user);
     });
+    
     it('throws an unathorized exception as user cannot be found', async () => {
       userRepository.findOne.mockResolvedValue(null);
       await expect(

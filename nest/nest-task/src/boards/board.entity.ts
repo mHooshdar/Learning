@@ -1,4 +1,4 @@
-import { User } from 'src/auth/user.entity';
+import { UserEntity } from 'src/auth/user.entity';
 import {
   BaseEntity,
   Column,
@@ -21,9 +21,9 @@ export class Board extends BaseEntity {
   color: string;
 
   @ManyToOne(
-    type => User,
+    type => UserEntity,
     user => user.boards,
     { eager: false }
   )
-  creator: User;
+  creator: UserEntity;
 }

@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { UserRepository } from './user.repository';
-import { User } from './user.entity';
+import { UserEntity } from './user.entity';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 
 @Injectable()
@@ -40,7 +40,7 @@ export class AuthService {
     return { accessToken };
   }
 
-  async getUsers(): Promise<User[]> {
+  async getUsers(): Promise<UserEntity[]> {
     return this.userRepository.find()
   }
 }
