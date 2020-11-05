@@ -8,9 +8,9 @@ import {
   Unique,
 } from 'typeorm';
 
-@Entity()
+@Entity('board')
 @Unique(['name'])
-export class Board extends BaseEntity {
+export class BoardEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

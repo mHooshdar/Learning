@@ -2,16 +2,17 @@ import {
   BaseEntity,
   Column,
   Entity,
+  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
-import { Board } from 'src/boards/board.entity';
-// import { Task } from 'src/tasks/task.entity';
+import { BoardEntity } from 'src/boards/board.entity';
+import { RoleEntity } from './roles.entity';
 
-@Entity()
+@Entity('user')
 @Unique(['username'])
 export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -29,11 +30,18 @@ export class UserEntity extends BaseEntity {
   salt: string;
 
   @OneToMany(
-    type => Board,
+    type => BoardEntity,
     board => board.creator,
     { eager: true },
   )
-  boards: Board[];
+  boards: BoardEntity[];
+
+  @ManyToMany(
+    type => RoleEntity,
+    role => role.users,
+    { eager: false },
+  )
+  roles: string[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

@@ -7,7 +7,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Board } from './board.entity';
+import { BoardEntity } from './board.entity';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { GetUser } from '../common/decorator/get-user.decorator';
@@ -20,7 +20,7 @@ export class BoardsController {
 
   @Get()
   @UseInterceptors(ClassSerializerInterceptor)
-  getBoards(): Promise<Board[]> {
+  getBoards(): Promise<BoardEntity[]> {
     return this.boardsService.getBoards();
   }
 
