@@ -8,6 +8,8 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { FilesModule } from './files/files.module';
 import { BoardsModule } from './boards/boards.module';
 import { TeamsModule } from './teams/teams.module';
+import { AccessControlModule } from 'nest-access-control';
+import { roles } from './app.roles';
 
 const dbConfig = config.get('db');
 
@@ -29,6 +31,7 @@ const dbConfig = config.get('db');
         process.env.NODE_ENV !== 'production', // TYPEORM_SYNCHRONIZE
       entities: [__dirname + '/**/*.entity.{js,ts}'], // TYPEORM_ENTITIES
     }),
+    AccessControlModule.forRoles(roles),
     ScheduleModule.forRoot(),
     AuthModule,
     DevModule,

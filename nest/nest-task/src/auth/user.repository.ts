@@ -6,16 +6,20 @@ import * as bcrypt from 'bcrypt';
 import { EntityRepository, Repository } from 'typeorm';
 import { AuthCredentialsDto } from 'src/auth/dto/auth-credential.dto';
 import { UserEntity } from './user.entity';
+import { AppRoles } from 'src/app.roles';
 
 @EntityRepository(UserEntity)
 export class UserRepository extends Repository<UserEntity> {
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    const { username, password } = authCredentialsDto;
+    const { username, password, roles } = authCredentialsDto;
 
     const user = this.create();
     user.username = username;
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
+    console.log(roles);
+    
+    user.roles = roles || [AppRoles.ADMIN];
 
     try {
       await user.save();

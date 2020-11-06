@@ -10,7 +10,7 @@ import { DevService } from './dev.service';
       host: 'localhost',
       port: 6379,
     }),
-    HttpModule
+    HttpModule,
   ],
   controllers: [DevController],
   providers: [DevService],

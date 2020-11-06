@@ -10,7 +10,6 @@ import {
 import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
 import { BoardEntity } from 'src/boards/board.entity';
-import { RoleEntity } from './roles.entity';
 
 @Entity('user')
 @Unique(['username'])
@@ -29,19 +28,15 @@ export class UserEntity extends BaseEntity {
   @Exclude()
   salt: string;
 
+  @Column('text', { array: true })
+  roles: string[];
+
   @OneToMany(
     type => BoardEntity,
     board => board.creator,
     { eager: true },
   )
   boards: BoardEntity[];
-
-  @ManyToMany(
-    type => RoleEntity,
-    role => role.users,
-    { eager: false },
-  )
-  roles: string[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);
