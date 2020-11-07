@@ -4,7 +4,7 @@ server:
 db:
   type: 'postgres' # TYPEORM_CONNECTION
   port: 5432 # TYPEORM_PORT
-  database: 'nest-task' # TYPEORM_DATABASE
+  database: 'nest-task2' # TYPEORM_DATABASE
 
 redis:
   port: 6379
