@@ -21,9 +21,9 @@ export class DevController {
 
   @UseGuards(AuthGuard(), ACGuard)
   @UseRoles({
-    resource:  'board',
-    action:  'read',
-    possession:  'any',
+    resource: 'board',
+    action: 'read',
+    possession: 'any',
   })
   @Get('test')
   test(@UserRoles() userRoles: any) {
